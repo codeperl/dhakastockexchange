@@ -39,7 +39,10 @@ class DseService
   end
 
   def fetch_current_information
-    company_information = parse_url('http://www.dsebd.org/latest_share_price_all.php').css('body div table').children.map do |child|
+    company_information = parse_url('http://www.dsebd.org/latest_share_price_all.php')
+                              .css('body div table')
+                              .children
+                              .map do |child|
       {}.tap do |row|
         row[:trading_code] = child.css('td')[1].text.strip
         row[:last_traded_price_for_today] = child.css('td')[2].text.strip.to_f
