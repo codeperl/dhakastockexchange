@@ -1,6 +1,3 @@
-# require 'nokogiri'
-# require 'httparty'
-
 class DseService
   def parse_url(url)
     Nokogiri::HTML(HTTParty.get(url))
