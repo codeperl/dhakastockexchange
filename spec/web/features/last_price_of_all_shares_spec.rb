@@ -5,7 +5,7 @@ describe 'Last price of all shares' do
     visit '/shares'
 
     within '#shares' do
-      assert page.has_css?('.shares', count: 2), 'Expected to find 2 shares'
+      assert page.has_css?('.share', count: 2), 'Expected to find 2 shares'
     end
   end
 end

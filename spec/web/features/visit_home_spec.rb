@@ -4,6 +4,6 @@ describe 'Visit home' do
   it 'is successful' do
     visit '/'
 
-    page.body.must_include('Bookshelf')
+    page.body.must_include('Shares')
   end
 end
