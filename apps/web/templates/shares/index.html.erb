@@ -1,33 +1,41 @@
 <div class="container">
+  <% if shares.any? %>
   <table class="responsive-table">
     <caption><%= caption %></caption>
     <thead>
-        <tr>
-          <th scope="col">Trading code</th>
-          <th scope="col">Last traded price</th>
-          <th scope="col">Highest price</th>
-          <th scope="col">Lowest price</th>
-          <th scope="col">Closing price</th>
-          <th scope="col">Yesterdays closing price</th>
-          <th scope="col">Changes</th>
-          <th scope="col">Traded</th>
-          <th scope="col">Value in million</th>
-          <th scope="col">Volume</th>
-        </tr>
+      <tr>
+        <th scope="col">Serial</th>
+        <th scope="col">Trading code</th>
+        <th scope="col">Last traded price</th>
+        <th scope="col">Highest price</th>
+        <th scope="col">Lowest price</th>
+        <th scope="col">Closing price</th>
+        <th scope="col">Yesterdays closing price</th>
+        <th scope="col">Changes</th>
+        <th scope="col">Traded</th>
+        <th scope="col">Value in million</th>
+        <th scope="col">Volume</th>
+      </tr>
     </thead>
     <tbody>
+      <% shares.each do |share| %>
         <tr>
-          <th scope="row">Frozen</th>
-          <td data-title="Last traded price" data-type="currency">$875,742,326</td>
-          <td data-title="Highest price" data-type="currency">$1,287,000,000</td>
-          <td data-title="Lowest price" data-type="currency">$400,738,009	</td>
-          <td data-title="Closing price" data-type="currency">$875,742,326</td>
-          <td data-title="Yesterdays closing price" data-type="currency">$150,000,000</td>
-          <td data-title="Changes" data-type="currency">$150,000,000</td>
-          <td data-title="Traded" data-type="currency">$150,000,000</td>
-          <td data-title="Value in million" data-type="currency">$150,000,000</td>
-          <td data-title="Volume">150,000,000</td>
+          <td data-title="Serial"><%= share.id %></td>
+          <th scope="row"><%= share.trading_code %></th>
+          <td data-title="Last traded price" data-type="currency"><%= share.last_traded_price_for_today %></td>
+          <td data-title="Highest price" data-type="currency"><%= share.highest_price_for_today %></td>
+          <td data-title="Lowest price" data-type="currency"><%= share.lowest_price_for_today %></td>
+          <td data-title="Closing price" data-type="currency"><%= share.closing_price_for_today %></td>
+          <td data-title="Yesterdays closing price" data-type="currency"><%= share.yesterdays_closing_price %></td>
+          <td data-title="Changes" data-type="currency"><%= share.change_for_today %></td>
+          <td data-title="Traded" data-type="currency"><%= share.trade_for_today %></td>
+          <td data-title="Value in million" data-type="currency"><%= share.value_million_for_today %></td>
+          <td data-title="Volume"><%= share.volume_for_today %></td>
         </tr>
+      <% end %>
     </tbody>
   </table>
+  <% else %>
+    <p class="placeholder">There are no books yet.</p>
+  <% end %>
 </div>
