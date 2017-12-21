@@ -1,13 +1,33 @@
-<h2>Last price of all shares</h2>
-
-<div id="shares">
-  <div class="share">
-    <h3>Patterns of Enterprise Application Architecture</h3>
-    <p>by <strong>Martin Fowler</strong></p>
-  </div>
-
-  <div class="share">
-    <h3>Test Driven Development</h3>
-    <p>by <strong>Kent Beck</strong></p>
-  </div>
+<div class="container">
+  <table class="responsive-table">
+    <caption><%= caption %></caption>
+    <thead>
+        <tr>
+          <th scope="col">Trading code</th>
+          <th scope="col">Last traded price</th>
+          <th scope="col">Highest price</th>
+          <th scope="col">Lowest price</th>
+          <th scope="col">Closing price</th>
+          <th scope="col">Yesterdays closing price</th>
+          <th scope="col">Changes</th>
+          <th scope="col">Traded</th>
+          <th scope="col">Value in million</th>
+          <th scope="col">Volume</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <th scope="row">Frozen</th>
+          <td data-title="Last traded price" data-type="currency">$875,742,326</td>
+          <td data-title="Highest price" data-type="currency">$1,287,000,000</td>
+          <td data-title="Lowest price" data-type="currency">$400,738,009	</td>
+          <td data-title="Closing price" data-type="currency">$875,742,326</td>
+          <td data-title="Yesterdays closing price" data-type="currency">$150,000,000</td>
+          <td data-title="Changes" data-type="currency">$150,000,000</td>
+          <td data-title="Traded" data-type="currency">$150,000,000</td>
+          <td data-title="Value in million" data-type="currency">$150,000,000</td>
+          <td data-title="Volume">$150,000,000</td>
+        </tr>
+    </tbody>
+  </table>
 </div>
