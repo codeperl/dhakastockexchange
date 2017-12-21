@@ -12,9 +12,7 @@ class FetchCurrentShares
   # rubocop:disable Metrics/AbcSize
   def call
     @shares = parse_url('http://www.dsebd.org/latest_share_price_all.php')
-                              .css('body div table')
-                              .children
-                              .map do |child|
+              .css('body div table').children.map do |child|
       {}.tap do |share|
         share[:trading_code]                = child.css('td')[1].text.strip
         share[:last_traded_price_for_today] = child.css('td')[2].text.strip.to_f
