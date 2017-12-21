@@ -19,7 +19,8 @@ $bp-homer: 75em;
 
 body {
   font-family: $helvetica;
-  color: rgba(94,93,82,1);
+  //color: rgba(94,93,82,1);
+  color: black;
 }
 
 a {
@@ -184,7 +185,8 @@ a {
 
       @media (min-width: $bp-bart) {
         background-color: transparent;
-        color: rgba(94,93,82,1);
+        //color: rgba(94,93,82,1);
+        color: black;
         text-align: left;
       }
     }
@@ -209,7 +211,8 @@ a {
       content: attr(data-title);
       float: left;
       font-size: .8em;
-      color: rgba(94,93,82,.75);
+      //color: rgba(94,93,82,.75);
+      color: black;
 
       @media (min-width: $bp-lisa) {
         font-size: .9em;
