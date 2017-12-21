@@ -146,9 +146,12 @@ a {
   tfoot {
     font-size: .8em;
     font-style: italic;
+    background-color: rgba(227, 220, 24, 0.11);
+    color: black;
 
     @media (min-width: $bp-marge) {
       font-size: .9em;
+      text-align: left;
     }
   }
 
