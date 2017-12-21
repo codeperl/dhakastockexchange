@@ -4,12 +4,12 @@ class FindCompanyNames
   include Hanami::Interactor
 
   expose :companies
-  def initialize(companiesInteractor: FetchCompanies.new)
-    @companiesInteractor = companiesInteractor
+  def initialize(companies_interactor: FetchCompanies.new)
+    @companies_interactor = companies_interactor
   end
 
   def call
-    @companies = @companiesInteractor.call
+    @companies = @companies_interactor.call
 
     @companies.map do |company|
 

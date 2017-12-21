@@ -5,11 +5,11 @@ class AddShare
 
   expose :share
 
-  def initialize(shareRepository: ShareRepository.new)
-    @shareRepository = shareRepository
+  def initialize(share_repository: ShareRepository.new)
+    @share_repository = share_repository
   end
 
   def call(share)
-    @share = @shareRepository.create(share)
+    @share = @share_repository.create(share)
   end
 end
