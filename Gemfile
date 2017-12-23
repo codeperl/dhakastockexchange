@@ -30,3 +30,5 @@ gem 'nokogiri', '~> 1.8'
 gem 'httparty', '~> 0.15'
 gem 'sass', '~> 3.5', '>= 3.5.4'
 gem 'bourbon'
+
+gem 'whenever', :require => false
