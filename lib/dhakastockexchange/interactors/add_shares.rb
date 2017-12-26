@@ -5,9 +5,9 @@ class AddShares
 
   def initialize(fetch_current_shares_interactor: FetchCurrentShares.new,
                  clear_last_time_shares_interactor: ClearLastTimeShares.new,
-                 add_share_interactor: AddShare.new,
                  add_current_date_share_interactor: AddCurrentDateShare.new,
-                 add_current_time_share_interactor: AddCurrentTimeShare.new)
+                 add_current_time_share_interactor: AddCurrentTimeShare.new,
+                 add_share_interactor: AddShare.new)
 
     @fetch_current_shares_interactor = fetch_current_shares_interactor
     @clear_last_time_shares_interactor = clear_last_time_shares_interactor
