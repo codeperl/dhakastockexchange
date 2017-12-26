@@ -158,6 +158,15 @@ module Web
         sources << [
           'assets'
         ]
+
+        # Added by ROMAN
+        # Fingerprint settings
+        fingerprint true
+        # CDN settings
+        scheme 'https'
+        host   '123.cloudfront.net'
+        port   443
+        # Added by ROMAN end.
       end
 
       ##
@@ -233,9 +242,6 @@ module Web
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
-
-=begin
-      # KEEPING IT CLOSE. FIXME! ROMAN!
       security.content_security_policy %{
         form-action 'self';
         frame-ancestors 'self';
@@ -252,7 +258,6 @@ module Web
         frame-src 'self';
         media-src 'self'
       }
-=end
 
       ##
       # FRAMEWORKS
