@@ -233,6 +233,9 @@ module Web
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
+
+=begin
+      # KEEPING IT CLOSE. FIXME! ROMAN!
       security.content_security_policy %{
         form-action 'self';
         frame-ancestors 'self';
@@ -249,6 +252,7 @@ module Web
         frame-src 'self';
         media-src 'self'
       }
+=end
 
       ##
       # FRAMEWORKS

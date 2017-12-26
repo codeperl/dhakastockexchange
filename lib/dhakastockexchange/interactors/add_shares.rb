@@ -9,6 +9,7 @@ class AddShares
                  fetch_current_shares_interactor: FetchCurrentShares.new,
                  clear_last_time_shares_interactor: ClearLastTimeShares.new,
                  add_current_date_share_interactor: AddCurrentDateShare.new,
+                 publish_shares_updates_interactor: PublishSharesUpdates.new,
                  add_current_time_share_interactor: AddCurrentTimeShare.new,
                  add_share_interactor: AddShare.new)
 
@@ -16,6 +17,7 @@ class AddShares
     @fetch_current_shares_interactor = fetch_current_shares_interactor
     @clear_last_time_shares_interactor = clear_last_time_shares_interactor
     @add_current_time_share_interactor = add_current_time_share_interactor
+    @publish_shares_updates_interactor = publish_shares_updates_interactor
     @add_current_date_share_interactor = add_current_date_share_interactor
     @add_share_interactor = add_share_interactor
   end
@@ -32,6 +34,7 @@ class AddShares
           @add_current_date_share_interactor.call(share)
           @add_share_interactor.call(share)
         end
+        @publish_shares_updates_interactor.call('/messages/all', 'hello world at real time ;)')
       end
     end
   end
