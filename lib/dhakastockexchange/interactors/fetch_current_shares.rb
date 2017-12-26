@@ -24,6 +24,7 @@ class FetchCurrentShares
         share[:trade_for_today]             = child.css('td')[8].text.strip.to_f
         share[:value_million_for_today]     = child.css('td')[9].text.strip.to_f
         share[:volume_for_today]            = child.css('td')[10].text.strip
+        share[:fetched_at]                  = DateTime.now
       end
     end
 

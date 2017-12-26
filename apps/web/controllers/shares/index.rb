@@ -5,7 +5,7 @@ module Web::Controllers::Shares
     expose :shares
 
     def call(params)
-      @shares = ShareRepository.new.all
+      @shares = CurrentTimeShareRepository.new.all
     end
   end
 end

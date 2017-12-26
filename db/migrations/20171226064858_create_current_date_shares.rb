@@ -1,7 +1,8 @@
 Hanami::Model.migration do
   change do
-    create_table :shares do
+    create_table :current_date_shares do
       primary_key :id
+
       column :trading_code,  String, null: false
       column :last_traded_price_for_today,  Float, null: false, default: 0.0
       column :highest_price_for_today,  Float, null: false, default: 0.0

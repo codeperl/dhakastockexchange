@@ -23,5 +23,9 @@ env :PATH, ENV['PATH']
 env :GEM_PATH, ENV['GEM_PATH']
 
 every '* 10-15 * * 0-5' do
-  rake 'update_share_information'
+  rake 'DSE:update_share_information'
+end
+
+every '59 9 * * 0-5' do
+  rake 'DSE:clear_last_date_share_information'
 end

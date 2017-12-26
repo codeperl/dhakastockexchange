@@ -2,9 +2,16 @@ require 'rake'
 require 'hanami/rake_tasks'
 require 'rake/testtask'
 
-desc 'Fetch and insert update for share of Dhaka Stock Exchange'
-task update_share_information: :environment do
-  AddShares.new.call
+namespace :DSE do
+  desc 'Fetch and insert update for share'
+  task update_share_information: :environment do
+    AddShares.new.call
+  end
+
+  desc 'Clear last date share information'
+  task clear_last_date_share_information: :environment do
+    ClearLastDateShares.new.call
+  end
 end
 
 Rake::TestTask.new do |t|
