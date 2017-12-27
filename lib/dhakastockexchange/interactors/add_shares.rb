@@ -23,7 +23,7 @@ class AddShares
   end
 
   def call
-    if Office::OPEN == @office_hour_interactor.call.office_hour
+    if Office::OPEN != @office_hour_interactor.call.office_hour
       fetched_shares = @fetch_current_shares_interactor.call.shares
 
       unless fetched_shares.empty?
@@ -34,7 +34,7 @@ class AddShares
           @add_current_date_share_interactor.call(share)
           @add_share_interactor.call(share)
         end
-        @publish_shares_updates_interactor.call('/messages/all', 'hello world at real time ;)')
+        @publish_shares_updates_interactor.call('/messages/all', fetched_shares)
       end
     end
   end
