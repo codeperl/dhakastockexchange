@@ -26,8 +26,7 @@ every '* 10-15 * * 0-5' do
   rake 'DSE:update_share_information'
 end
 
-=begin
-# FOR TEST PURPOSE
+=begin # FOR TEST PURPOSE
 every '* * * * 0-5' do
   rake 'DSE:update_share_information'
 end

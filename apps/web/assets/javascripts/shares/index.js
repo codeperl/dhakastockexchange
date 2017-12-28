@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
 
     $('table.search-table').tableSearch({
         searchText:' ',
-        searchPlaceHolder:'Search by trading code',
+        searchPlaceHolder:'Filter by trading code',
         className: 'form-control',
         id: 'search-term'
     });
@@ -37,5 +37,5 @@ function notify(client, channel, container, callback)
  */
 function reSearch()
 {
-    $('#search-term').keyup();
+    $('#search-term').submit();
 }
