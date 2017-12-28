@@ -12,8 +12,9 @@
 			searchText = (options.searchText)?options.searchText:'Search: ',
 			searchPlaceHolder = (options.searchPlaceHolder)?options.searchPlaceHolder:'',
 			className = (options.className)?options.className:'',
+			id = (options.id)?options.id:'';
 			divObj = $('<div style="float:right;">'+searchText+'</div><br /><br />'),
-			inputObj = $('<input type="text" class="'+className+'" placeholder="'+searchPlaceHolder+'" />'),
+			inputObj = $('<input type="text" class="'+className+'" id="'+id+'" placeholder="'+searchPlaceHolder+'" />'),
 			caseSensitive = (options.caseSensitive===true)?true:false,
 			searchFieldVal = '',
 			pattern = '';
