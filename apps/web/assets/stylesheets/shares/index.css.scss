@@ -48,6 +48,8 @@ a {
 .responsive-table {
   width: 100%;
   margin-bottom: 1.5em;
+  border-collapse: separate;
+  border-spacing: 0.15em;
 
   @media (min-width: $bp-bart) {
     font-size: .9em;
@@ -87,7 +89,7 @@ a {
       /*background-color: rgba(29,150,178,1);
       border: 1px solid rgba(29,150,178,1);*/
       font-size: 0.8em;
-      font-weight: 600;
+      font-weight: normal;
       text-align: center;
       color: black;
 

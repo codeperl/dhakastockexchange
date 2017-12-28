@@ -1,5 +1,11 @@
 jQuery(document).ready(function () {
     notify(setClient('http://localhost:8080/faye'), '/messages/all', '#share-updates'); // FIXME! ROMAN! Faye server!
+
+    $('table.search-table').tableSearch({
+        searchText:' ',
+        searchPlaceHolder:'Search by trading code',
+        className: 'form-control'
+    });
 });
 
 /**
