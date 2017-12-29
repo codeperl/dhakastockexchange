@@ -14,7 +14,7 @@
 			className = (options.className)?options.className:'',
 			id = (options.id)?options.id:'';
 			divObj = $('<div style="float:right;">'+searchText+'</div><br /><br />'),
-			formObject = $('<form class="form-inline"><input type="text" class="'+className+'" id="'+id+'" placeholder="'+searchPlaceHolder+'" /> <input type="submit" class="btn btn-default" value="Filter" /></form>'),
+			formObject = $('<div class="row"><div class="col-md-12"><form class="form-inline" id="'+id+'"><input type="text" class="'+className+'" placeholder="'+searchPlaceHolder+'" /> <input type="submit" class="btn btn-default" value="Filter" /></form></div></div>'),
 			caseSensitive = (options.caseSensitive===true)?true:false,
 			searchFieldVal = '',
 			pattern = '';
