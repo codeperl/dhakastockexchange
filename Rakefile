@@ -5,7 +5,7 @@ require 'rake/testtask'
 namespace :DSE do
   desc 'Fetch and insert update for share'
   task update_share_information: :environment do
-    AddShares.new.call
+    PublishSharesUpdates.new.call('/messages/all', AddShares.new.call.shares)
   end
 
   desc 'Clear last date share information'
