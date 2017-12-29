@@ -25,7 +25,7 @@ class AddShares
   end
 
   def call
-    if Office::OPEN != @office_hour_interactor.call.office_hour
+    if Office::OPEN == @office_hour_interactor.call.office_hour
       fetched_shares = @fetch_current_shares_interactor.call.shares
 
       unless fetched_shares.empty?
