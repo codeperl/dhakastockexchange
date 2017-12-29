@@ -1,13 +1,20 @@
 jQuery(document).ready(function () {
+    createSearchForm();
     notify(setClient('http://localhost:8080/faye'), '/messages/all', '#share-updates', reSearch); // FIXME! ROMAN! Faye server!
+});
 
+/**
+ *
+ */
+function createSearchForm()
+{
     $('table.search-table').tableSearch({
         searchText:' ',
         searchPlaceHolder:'Filter by trading code',
         className: 'form-control',
         id: 'search-term'
     });
-});
+}
 
 /**
  * @param url
