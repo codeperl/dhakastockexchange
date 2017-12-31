@@ -1,5 +1,4 @@
 <div class="container">
-  <% if shares.any? %>
   <table class="responsive-table search-table">
     <thead>
       <tr>
@@ -17,9 +16,10 @@
       </tr>
     </thead>
     <tbody id="share-updates">
+    <% if shares.any? %>
       <% shares.each_with_index do |share, index| %>
         <tr class="row-container">
-          <td data-title="Serial"><%= (index+1) %></td>
+          <td data-title="Serial"><%= (index + 1) %></td>
           <th scope="row"><%= share.trading_code %></th>
           <td data-title="Last traded price" data-type="currency"><%= share.last_traded_price_for_today %></td>
           <td data-title="Highest price" data-type="currency"><%= share.highest_price_for_today %></td>
@@ -32,26 +32,35 @@
           <td data-title="Volume"><%= share.volume_for_today %></td>
         </tr>
       <% end %>
+    <% else %>
+      <tr class="row-container">
+        <td colspan="11">
+          There is no update yet.
+        </td>
+      </tr>
+    <% end %>
     </tbody>
     <tfoot>
     <tr>
       <td colspan="11">* Data will be updated in every minute.</td>
     </tr>
     <tr>
-      <td colspan="11">** This application is fully dependent on Dhaka Stock Exchange website. So, this site owner is not responsible
-        for any faulty information.</td>
+      <td colspan="11">** This application is fully dependent on Dhaka Stock Exchange website. So, this site owner is
+        not responsible
+        for any faulty information.
+      </td>
     </tr>
     <tr>
-      <td colspan="11">*** This site is trying to make the date more visible and nothing else. So, For a faluty internet line or inte
-        rruption or any changes made at Dhaka Stock Exchange, may effect the information.</td>
+      <td colspan="11">*** This site is trying to make the date more visible and nothing else. So, For a faluty internet
+        line or inte
+        rruption or any changes made at Dhaka Stock Exchange, may effect the information.
+      </td>
     </tr>
     <tr>
       <td colspan="11">**** Please remember, this site is a personal attempt to help you more. There is no relationship
-        with Dhaka Stock Exchange or any other company or authority.</td>
+        with Dhaka Stock Exchange or any other company or authority.
+      </td>
     </tr>
     </tfoot>
   </table>
-  <% else %>
-    <p class="placeholder">There is no update yet.</p>
-  <% end %>
 </div>
