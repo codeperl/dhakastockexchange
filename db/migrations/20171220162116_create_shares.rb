@@ -13,6 +13,7 @@ Hanami::Model.migration do
       column :value_million_for_today,  Float, null: false, default: 0.0
       column :volume_for_today,  String, null: false
       column :fetched_at, DateTime, null: false
+      column :version, Integer, null: false
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false

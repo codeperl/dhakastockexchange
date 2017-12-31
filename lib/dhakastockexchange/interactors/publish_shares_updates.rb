@@ -5,8 +5,13 @@ class PublishSharesUpdates
   include Hanami::Interactor
   include RealTimeApp
 
-  def initialize(broadcast_service: Broadcast.new)
+  def initialize(broadcast_service: Broadcast.new,
+                 share_update_version_repository: ShareUpdateVersionRepository.new,
+                 current_date_share_repository: CurrentDateShareRepository.new)
+
     @broadcast_service = broadcast_service
+    @share_update_version_repository = share_update_version_repository
+    @current_date_share_repository = current_date_share_repository
   end
 
   def call(channel, shares)
@@ -18,8 +23,8 @@ class PublishSharesUpdates
 
     if shares
       shares.each_with_index do |share, index|
-        content << '<tr class="row-container">'
-        content << '<td data-title="Serial">' << "#{index+1}" << '</td>'
+        content << "<tr class='row-container #{share_update_class_by_trading_code(share.trading_code)}'>"
+        content << '<td data-title="Serial">' << "#{index + 1}" << '</td>'
         content << '<th scope="row">' << "#{share.trading_code}" << '</th>'
         content << '<td data-title="Last traded price" data-type="currency">' << "#{share.last_traded_price_for_today}" << '</td>'
         content << '<td data-title="Highest price" data-type="currency">' << "#{share.highest_price_for_today}" << '</td>'
@@ -36,4 +41,26 @@ class PublishSharesUpdates
 
     content
   end
+end
+
+def share_update_class_by_trading_code(trading_code)
+  stylesheet_class_name = ''
+
+  last_version = @share_update_version_repository.last
+  second_last_version = last_version.version - 1
+
+  last_share = @current_date_share_repository.find_one_by(trading_code, last_version.version)
+  second_last_share = @current_date_share_repository.find_one_by(trading_code, second_last_version)
+
+  if last_share && second_last_share
+    last_traded_price = last_share[:last_traded_price_for_today] - second_last_share[:last_traded_price_for_today]
+
+    if last_traded_price > 0
+      stylesheet_class_name = 'up'
+    elsif last_traded_price < 0
+      stylesheet_class_name = 'down'
+    end
+  end
+
+  stylesheet_class_name
 end

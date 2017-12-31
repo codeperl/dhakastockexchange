@@ -13,7 +13,8 @@ class AddShares
                  add_current_date_share_interactor: AddCurrentDateShare.new,
                  add_current_time_share_interactor: AddCurrentTimeShare.new,
                  add_share_interactor: AddShare.new,
-                 current_time_share_repository: CurrentTimeShareRepository.new)
+                 current_time_share_repository: CurrentTimeShareRepository.new,
+                 share_update_version_repository: ShareUpdateVersionRepository.new)
 
     @office_hour_interactor = office_hour_interactor
     @fetch_current_shares_interactor = fetch_current_shares_interactor
@@ -22,6 +23,7 @@ class AddShares
     @add_current_date_share_interactor = add_current_date_share_interactor
     @add_share_interactor = add_share_interactor
     @current_time_share_repository = current_time_share_repository
+    @share_update_version_repository = share_update_version_repository
   end
 
   def call
@@ -29,9 +31,13 @@ class AddShares
       fetched_shares = @fetch_current_shares_interactor.call.shares
 
       unless fetched_shares.empty?
-        @clear_last_time_shares_interactor.call
+        share_update_version = Hash.new
+        share_update_version[:fake_collumn] = nil
+        last_share_update_version = @share_update_version_repository.create(share_update_version)
 
+        @clear_last_time_shares_interactor.call
         fetched_shares.each do |share|
+          share[:version] = last_share_update_version.version
           @add_current_time_share_interactor.call(share)
           @add_current_date_share_interactor.call(share)
           @add_share_interactor.call(share)
