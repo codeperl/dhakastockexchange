@@ -3,14 +3,14 @@ require 'hanami/rake_tasks'
 require 'rake/testtask'
 
 namespace :DSE do
-  desc 'Fetch and insert update for share'
-  task update_share_information: :environment do
+  desc 'Publish share updates'
+  task publish_share_information: :environment do
     PublishSharesUpdates.new.call('/messages/all', AddShares.new.call.shares)
   end
 
-  desc 'Clear last date share information'
-  task clear_last_date_share_information: :environment do
-    ClearLastDateShares.new.call
+  desc 'Clear updates of share at mid night'
+  task clear_updates_of_share_at_mid_night: :environment do
+    ClearLastTimeShares.new.call
   end
 end
 
