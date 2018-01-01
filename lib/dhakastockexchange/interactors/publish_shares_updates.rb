@@ -44,16 +44,17 @@ class PublishSharesUpdates
 
     content
   end
-end
 
-def share_update_class_by_last_traded_price_change_than_last_update(last_traded_price_change_than_last_update)
-  stylesheet_class_name = ''
 
-  if last_traded_price_change_than_last_update > 0.0
-    stylesheet_class_name = 'up'
-  elsif last_traded_price_change_than_last_update < 0.0
-    stylesheet_class_name = 'down'
+  def share_update_class_by_last_traded_price_change_than_last_update(last_traded_price_change_than_last_update)
+    stylesheet_class_name = ''
+
+    if last_traded_price_change_than_last_update > 0.0
+      stylesheet_class_name = 'up'
+    elsif last_traded_price_change_than_last_update < 0.0
+      stylesheet_class_name = 'down'
+    end
+
+    stylesheet_class_name
   end
-
-  stylesheet_class_name
 end
