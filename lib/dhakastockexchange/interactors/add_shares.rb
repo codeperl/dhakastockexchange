@@ -91,6 +91,7 @@ class AddShares
   def previous_version(current_version)
     current_version - 1
   end
+
   def calculate_last_traded_price_change_than_last_update(share, current_upate_for_last_traded_price)
     if share && current_upate_for_last_traded_price
       last_traded_price_change_than_last_update = current_upate_for_last_traded_price - share[:last_traded_price_for_today]
