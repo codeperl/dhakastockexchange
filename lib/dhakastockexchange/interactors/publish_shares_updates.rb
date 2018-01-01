@@ -45,7 +45,6 @@ class PublishSharesUpdates
     content
   end
 
-
   def share_update_class_by_last_traded_price_change_than_last_update(last_traded_price_change_than_last_update)
     stylesheet_class_name = ''
 
