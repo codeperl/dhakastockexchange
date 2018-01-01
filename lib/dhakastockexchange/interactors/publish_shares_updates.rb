@@ -38,6 +38,8 @@ class PublishSharesUpdates
         content << '<td data-title="Volume">' << "#{share.volume_for_today}" << '</td>'
         content << '</tr>'
       end
+    else
+      content << '<tr class="row-container"><td colspan="11">There is no update yet.</td></tr>'
     end
 
     content
