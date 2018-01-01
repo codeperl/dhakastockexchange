@@ -38,7 +38,3 @@ every '* * * * 0-5' do
   rake 'DSE:update_share_information'
 end
 =end
-
-every '59 9 * * 0-5' do
-  rake 'DSE:clear_last_date_share_information'
-end
