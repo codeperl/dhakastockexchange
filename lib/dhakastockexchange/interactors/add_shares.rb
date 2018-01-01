@@ -59,27 +59,23 @@ class AddShares
 
       @clear_last_time_shares_interactor.call
       fetched_shares.each do |share|
+        share[:version] = last_share_update_version.version
 
         searched_share = @share_repository.find_one_by(
             share[:trading_code], previous_version(last_share_update_version.version)
         )
 
-        last_traded_price_change_than_last_update = calculate_last_traded_price_change_than_last_update(
+        share[:last_traded_price_change_than_last_update] = calculate_last_traded_price_change_than_last_update(
             searched_share, share[:last_traded_price_for_today]
         )
 
-        value_in_million_change_than_last_update = calculate_value_in_million_change_than_last_update(
+        share[:value_in_million_change_than_last_update] = calculate_value_in_million_change_than_last_update(
             searched_share, share[:value_million_for_today]
         )
 
-        traded_change_than_last_update = calculate_traded_change_than_last_update(
+        share[:traded_change_than_last_update] = calculate_traded_change_than_last_update(
             searched_share, share[:trade_for_today]
         )
-
-        share[:version] = last_share_update_version.version
-        share[:last_traded_price_change_than_last_update] = last_traded_price_change_than_last_update
-        share[:value_in_million_change_than_last_update] = value_in_million_change_than_last_update
-        share[:traded_change_than_last_update] = traded_change_than_last_update
 
         @add_current_time_share_interactor.call(share)
         @add_current_date_share_interactor.call(share)
