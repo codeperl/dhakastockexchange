@@ -24,12 +24,12 @@ env :GEM_PATH, ENV['GEM_PATH']
 
 # Publish share update in every 2 minutes.
 every '*/2 10-15 * * 0-5' do
-  rake 'DSE:publish_share_information'
+  rake 'DSE:publish_shares_information'
 end
 
 # Clear share updates for previous day at mid night (12:00 AM)
 every '0 0 * * 0-5' do
-  rake 'DSE:clear_updates_of_share_at_mid_night'
+  rake 'DSE:clear_updates_of_shares_at_mid_night'
 end
 
 =begin

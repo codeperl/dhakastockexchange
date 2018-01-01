@@ -4,12 +4,12 @@ require 'rake/testtask'
 
 namespace :DSE do
   desc 'Publish share updates'
-  task publish_share_information: :environment do
+  task publish_shares_information: :environment do
     PublishSharesUpdates.new.call('/messages/all', AddShares.new.call.shares)
   end
 
   desc 'Clear updates of share at mid night'
-  task clear_updates_of_share_at_mid_night: :environment do
+  task clear_updates_of_shares_at_mid_night: :environment do
     ClearLastTimeShares.new.call
   end
 end
