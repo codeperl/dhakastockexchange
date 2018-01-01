@@ -23,7 +23,8 @@ class PublishSharesUpdates
 
     if shares
       shares.each_with_index do |share, index|
-        content << "<tr class='row-container #{share_update_class_by_last_traded_price_change_than_last_update(share.last_traded_price_change_than_last_update)}'>"
+        content << "<tr class='row-container #{share_update_class_by_last_traded_price_change_than_last_update(
+            share.last_traded_price_change_than_last_update)}'>"
         content << '<td data-title="Serial">' << "#{index + 1}" << '</td>'
         content << '<th scope="row">' << "#{share.trading_code}" << '</th>'
         content << '<td data-title="Last traded price" data-type="currency">' << "#{share.last_traded_price_for_today}" << '</td>'
