@@ -15,6 +15,9 @@ Hanami::Model.migration do
       column :volume_for_today,  String, null: false
       column :fetched_at, DateTime, null: false
       column :version, Integer, null: false
+      column :last_traded_price_change_than_last_update, Float, null: false, default: 0.0
+      column :value_in_million_change_than_last_update, Float, null: false, default: 0.0
+      column :traded_change_than_last_update, Float, null: false, default: 0.0
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false

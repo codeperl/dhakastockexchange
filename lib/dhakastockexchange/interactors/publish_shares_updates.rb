@@ -23,7 +23,7 @@ class PublishSharesUpdates
 
     if shares
       shares.each_with_index do |share, index|
-        content << "<tr class='row-container #{share_update_class_by_trading_code(share.trading_code)}'>"
+        content << "<tr class='row-container #{share_update_class_by_last_traded_price_change_than_last_update(share.last_traded_price_change_than_last_update)}'>"
         content << '<td data-title="Serial">' << "#{index + 1}" << '</td>'
         content << '<th scope="row">' << "#{share.trading_code}" << '</th>'
         content << '<td data-title="Last traded price" data-type="currency">' << "#{share.last_traded_price_for_today}" << '</td>'
@@ -43,23 +43,13 @@ class PublishSharesUpdates
   end
 end
 
-def share_update_class_by_trading_code(trading_code)
+def share_update_class_by_last_traded_price_change_than_last_update(last_traded_price_change_than_last_update)
   stylesheet_class_name = ''
 
-  last_version = @share_update_version_repository.last
-  second_last_version = last_version.version - 1
-
-  last_share = @current_date_share_repository.find_one_by(trading_code, last_version.version)
-  second_last_share = @current_date_share_repository.find_one_by(trading_code, second_last_version)
-
-  if last_share && second_last_share
-    last_traded_price = last_share[:last_traded_price_for_today] - second_last_share[:last_traded_price_for_today]
-
-    if last_traded_price > 0.0
-      stylesheet_class_name = 'up'
-    elsif last_traded_price < 0.0
-      stylesheet_class_name = 'down'
-    end
+  if last_traded_price_change_than_last_update > 0.0
+    stylesheet_class_name = 'up'
+  elsif last_traded_price_change_than_last_update < 0.0
+    stylesheet_class_name = 'down'
   end
 
   stylesheet_class_name

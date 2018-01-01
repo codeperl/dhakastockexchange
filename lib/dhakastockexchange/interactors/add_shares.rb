@@ -13,6 +13,7 @@ class AddShares
                  add_current_date_share_interactor: AddCurrentDateShare.new,
                  add_current_time_share_interactor: AddCurrentTimeShare.new,
                  add_share_interactor: AddShare.new,
+                 share_repository: ShareRepository.new,
                  current_time_share_repository: CurrentTimeShareRepository.new,
                  share_update_version_repository: ShareUpdateVersionRepository.new)
 
@@ -24,6 +25,7 @@ class AddShares
     @add_share_interactor = add_share_interactor
     @current_time_share_repository = current_time_share_repository
     @share_update_version_repository = share_update_version_repository
+    @share_repository = share_repository
   end
 
   def call
@@ -32,12 +34,33 @@ class AddShares
 
       unless fetched_shares.empty?
         share_update_version = Hash.new
-        share_update_version[:fake_collumn] = nil
+        share_update_version[:fake_data] = nil
         last_share_update_version = @share_update_version_repository.create(share_update_version)
 
         @clear_last_time_shares_interactor.call
         fetched_shares.each do |share|
+
+          searched_share = @share_repository.find_one_by(
+              share[:trading_code], previous_version(last_share_update_version.version)
+          )
+
+          last_traded_price_change_than_last_update = calculate_last_traded_price_change_than_last_update(
+              searched_share, share[:last_traded_price_for_today]
+          )
+
+          value_in_million_change_than_last_update = calculate_value_in_million_change_than_last_update(
+              searched_share, share[:value_million_for_today]
+          )
+
+          traded_change_than_last_update = calculate_traded_change_than_last_update(
+              searched_share, share[:trade_for_today]
+          )
+
           share[:version] = last_share_update_version.version
+          share[:last_traded_price_change_than_last_update] = last_traded_price_change_than_last_update
+          share[:value_in_million_change_than_last_update] = value_in_million_change_than_last_update
+          share[:traded_change_than_last_update] = traded_change_than_last_update
+
           @add_current_time_share_interactor.call(share)
           @add_current_date_share_interactor.call(share)
           @add_share_interactor.call(share)
@@ -46,6 +69,39 @@ class AddShares
     end
 
     @shares = @current_time_share_repository.all
+  end
+
+  def previous_version(current_version)
+    current_version - 1
+  end
+  def calculate_last_traded_price_change_than_last_update(share, current_upate_for_last_traded_price)
+    if share && current_upate_for_last_traded_price
+      last_traded_price_change_than_last_update = current_upate_for_last_traded_price - share[:last_traded_price_for_today]
+    else
+      last_traded_price_change_than_last_update = current_upate_for_last_traded_price
+    end
+
+    last_traded_price_change_than_last_update
+  end
+
+  def calculate_value_in_million_change_than_last_update(share, current_update_for_value_in_million)
+    if share && current_update_for_value_in_million
+      value_in_million_change_than_last_update = current_update_for_value_in_million - share[:value_million_for_today]
+    else
+      value_in_million_change_than_last_update = current_update_for_value_in_million
+    end
+
+    value_in_million_change_than_last_update
+  end
+
+  def calculate_traded_change_than_last_update(share, current_upate_for_traded)
+    if share && current_upate_for_traded
+      traded_change_than_last_update = current_upate_for_traded - share[:trade_for_today]
+    else
+      traded_change_than_last_update = current_upate_for_traded
+    end
+
+    traded_change_than_last_update
   end
 
 end
