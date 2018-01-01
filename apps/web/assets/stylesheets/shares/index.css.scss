@@ -241,7 +241,8 @@ a {
     tr.up {
       margin-bottom: 1em;
       border: 2px solid white;
-      background-color: rgba(28, 238, 12, 0.2);
+      background-color: rgb(81, 174, 82);
+      color: white;
 
       @media (min-width: $bp-bart) {
         // Undo display: block
@@ -280,7 +281,8 @@ a {
     tr.down {
       margin-bottom: 1em;
       border: 2px solid white;
-      background-color: rgba(238, 78, 60, 0.2);
+      background-color: rgb(179, 58, 44);
+      color: white;
 
       @media (min-width: $bp-bart) {
         // Undo display: block

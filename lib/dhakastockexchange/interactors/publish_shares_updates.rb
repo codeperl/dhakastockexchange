@@ -55,9 +55,9 @@ def share_update_class_by_trading_code(trading_code)
   if last_share && second_last_share
     last_traded_price = last_share[:last_traded_price_for_today] - second_last_share[:last_traded_price_for_today]
 
-    if last_traded_price > 0
+    if last_traded_price > 0.0
       stylesheet_class_name = 'up'
-    elsif last_traded_price < 0
+    elsif last_traded_price < 0.0
       stylesheet_class_name = 'down'
     end
   end
