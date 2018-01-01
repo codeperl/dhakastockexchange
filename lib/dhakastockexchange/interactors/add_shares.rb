@@ -117,5 +117,4 @@ class AddShares
 
     traded_change_than_last_update
   end
-
 end
