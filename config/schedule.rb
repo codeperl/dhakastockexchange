@@ -28,7 +28,7 @@ every '*/2 10-15 * * 0-5' do
 end
 
 # Clear share updates for previous day at mid night (12:00 AM)
-every '* * * * 0-5' do
+every '0 0 * * 0-5' do
   rake 'DSE:clear_updates_of_share_at_mid_night'
 end
 
