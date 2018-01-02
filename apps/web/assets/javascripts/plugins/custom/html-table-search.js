@@ -22,15 +22,19 @@
 			e.preventDefault();
 			searchFieldVal = $(this).find('input').val();
 			pattern = (caseSensitive)?RegExp(searchFieldVal):RegExp(searchFieldVal, 'i');
-			tableObj.find('tbody tr').hide().each(function(){
-				var currentRow = $(this);
-				currentRow.find('th').each(function(){
-					if(pattern.test($(this).html())){
-						currentRow.show();
-						return false;
-					}
-				});
-			});
+			if(searchFieldVal == '') {
+                tableObj.find('tbody tr').show();
+			} else {
+                tableObj.find('tbody tr').hide().each(function(){
+                    var currentRow = $(this);
+                    currentRow.find('th').each(function(){
+                        if(pattern.test($(this).html())){
+                            currentRow.show();
+                            return false;
+                        }
+                    });
+                });
+			}
 		});
 		tableObj.before(divObj.append(formObject));
 		return tableObj;
