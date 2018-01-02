@@ -4,7 +4,7 @@ require 'rake/testtask'
 
 namespace :DSE do
   desc 'Publish share updates'
-  task publish_shares_information: :environment do
+  task publish_shares_updates: :environment do
     PublishSharesUpdates.new.call('/messages/all', AddShares.new.call.shares)
   end
 
