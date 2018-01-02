@@ -32,9 +32,9 @@ class PublishSharesUpdates
         content << '<td data-title="Closing price" data-type="currency">' << "#{share.closing_price_for_today}" << '</td>'
         content << '<td data-title="Yesterdays closing price" data-type="currency">' << "#{share.yesterdays_closing_price}" << '</td>'
         content << '<td data-title="Changes" data-type="currency">' << "#{share.change_for_today}" << '</td>'
-        content << '<td data-title="Traded" data-type="currency">' << "#{share.trade_for_today}" << '</td>'
+        content << '<td data-title="Traded" data-type="currency">' << "#{format_number(share.trade_for_today)}" << '</td>'
         content << '<td data-title="Value in million" data-type="currency">' << "#{share.value_million_for_today}" << '</td>'
-        content << '<td data-title="Volume">' << "#{share.volume_for_today}" << '</td>'
+        content << '<td data-title="Volume">' << "#{format_number(share.volume_for_today)}" << '</td>'
         content << '</tr>'
       end
     else

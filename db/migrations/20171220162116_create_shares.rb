@@ -9,9 +9,9 @@ Hanami::Model.migration do
       column :closing_price_for_today,  Float, null: false, default: 0.0
       column :yesterdays_closing_price,  Float, null: false, default: 0.0
       column :change_for_today,  Float, null: false, default: 0.0
-      column :trade_for_today,  Float, null: false, default: 0.0
+      column :trade_for_today,  Integer, null: false, default: 0
       column :value_million_for_today,  Float, null: false, default: 0.0
-      column :volume_for_today,  String, null: false
+      column :volume_for_today,  Integer, null: false, default: 0
       column :fetched_at, DateTime, null: false
       column :version, Integer, null: false
       column :last_traded_price_change_than_last_update, Float, null: false, default: 0.0

@@ -32,9 +32,9 @@ every '0 0 * * 0-5' do
   rake 'DSE:clear_updates_of_shares_at_mid_night'
 end
 
-=begin
  # FOR TEST PURPOSE
+=begin
 every '* * * * 0-5' do
-  rake 'DSE:update_share_information'
+  rake 'DSE:publish_shares_information'
 end
 =end

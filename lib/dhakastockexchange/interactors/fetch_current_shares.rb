@@ -21,9 +21,9 @@ class FetchCurrentShares
         share[:closing_price_for_today]     = child.css('td')[5].text.strip.to_f
         share[:yesterdays_closing_price]    = child.css('td')[6].text.strip.to_f
         share[:change_for_today]            = child.css('td')[7].text.strip.to_f
-        share[:trade_for_today]             = child.css('td')[8].text.strip.to_f
+        share[:trade_for_today]             = filter_comma(child.css('td')[8].text.strip).to_i
         share[:value_million_for_today]     = child.css('td')[9].text.strip.to_f
-        share[:volume_for_today]            = child.css('td')[10].text.strip
+        share[:volume_for_today]            = filter_comma(child.css('td')[10].text.strip).to_i
         share[:fetched_at]                  = DateTime.now
       end
     end
@@ -31,5 +31,9 @@ class FetchCurrentShares
     @shares.shift
 
     @shares
+  end
+
+  def filter_comma(str)
+    str.sub(',', '')
   end
 end
