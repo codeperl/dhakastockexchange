@@ -10,7 +10,7 @@ namespace :DSE do
 
   desc 'Clear updates of share at mid night'
   task clear_updates_of_shares_at_mid_night: :environment do
-    ClearLastTimeShares.new.call
+    PublishSharesUpdates.new.call('/messages/all', ClearLastTimeShares.new.call.shares)
   end
 end
 
