@@ -22,7 +22,7 @@ class PublishSharesUpdates
   def prepare_content(shares)
     content = ''
 
-    if shares
+    if ! shares.empty?
       shares.each_with_index do |share, index|
         content << "<tr class='row-container #{row_color_by_value(share.last_traded_price_change_than_last_update)}'>"
         content << '<td data-title="Serial">' << "#{index + 1}" << '</td>'
