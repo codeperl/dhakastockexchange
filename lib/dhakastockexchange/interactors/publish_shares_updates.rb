@@ -3,6 +3,7 @@ require_relative './../pubsub/realtime_app/broadcast'
 
 class PublishSharesUpdates
   include Hanami::Interactor
+  include Hanami::Helpers # FIXME! ROMAN! HANAMI HELPER IS HERE TO MANAGE VIEW!
   include RealTimeApp
 
   def initialize(broadcast_service: Broadcast.new,
