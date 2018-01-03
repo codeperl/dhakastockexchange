@@ -1,3 +1,3 @@
 module Office
-  OPEN = 'open'
+  OPEN = 'open'  unless const_defined?(:OPEN)
 end
