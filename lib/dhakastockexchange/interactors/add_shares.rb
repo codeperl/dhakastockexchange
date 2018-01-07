@@ -40,8 +40,8 @@ class AddShares
   end
 
   def generate_day_closing_share_information
-    closing_start_time = Time.parse "2:31 pm"
-    closing_end_time = Time.parse "2:32 pm"
+    closing_start_time = Time.parse "2:34 pm"
+    closing_end_time = Time.parse "2:35 pm"
     current_time = Time.now
 
     if current_time >= closing_start_time && current_time <=closing_end_time
